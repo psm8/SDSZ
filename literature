@@ -1,0 +1,41 @@
+19. Symulacja ogrzewania pomieszczenia
+a. Opis:
+	i. W okresie zimowy pomieszczenie mieszkalne należy ogrzewać.
+Określając przenikalność cieplną materiałów można oszacować
+sprawność i koszt ogrzewania.
+	ii. W pomieszczeniu chcemy utrzymywać stałą temperaturę niezależnie od
+panujących na zewnątrz warunków atmosferycznych.
+
+b. Cel:
+	i. Określenie optymalnego sposobu ogrzewania pomieszczeń.
+	ii. Opracowanie strategii grzewczej.
+
+http://www.bakker.org/dartmouth06/engs150/03-cnsrv.pdf
+http://homes.civil.aau.dk/pvn/cfd-benchmarks/two_d_literature/1995_1999/Chen_Q_and_W_Xu_1997.pdf
+https://www.cfd-online.com/Wiki/Navier-Stokes_equations
+http://www.eng.auburn.edu/~tplacek/courses/fluidsreview-1.pdf
+http://wwwmayr.informatik.tu-muenchen.de/konferenzen/Jass05/courses/2/Zuo/Zuo_paper.pdf
+https://www.researchgate.net/publication/223542250_A_simplified_system_for_indoor_airflow_simulation/download
+http://etheses.whiterose.ac.uk/13546/1/Thesis_for_web_new.pdf
+https://www.sciencedirect.com/science/article/pii/S2212609015000047
+http://www.simulace.info/index.php/Heating_System_Simulation
+http://journals.bg.agh.edu.pl/AUTOMAT/2014.18.1/automat.2014.18.1.9.pdf
+https://en.wikipedia.org/wiki/Computational_fluid_dynamics
+https://w-shadow.com/blog/2009/09/01/simple-fluid-simulation/
+http://etheses.whiterose.ac.uk/13546/1/Thesis_for_web_new.pdf
+
+
+
+https://pl.wikipedia.org/wiki/Proces_stochastyczny
+http://home.agh.edu.pl/~wslosar/17.htm
+https://www.engineeringtoolbox.com/convective-heat-transfer-d_430.html
+https://en.wikipedia.org/wiki/Newton%27s_law_of_cooling
+https://www.youtube.com/results?search_query=natural+convection+in+a+room+constant
+
+
+1. powierzchnia ścian, okien, drzwi
+2. współczynniki przenikalności
+3. temp na zewnątrz pomieszczenia
+4. temp pocz w środku
+5. objętość
+6. 
