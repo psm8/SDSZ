@@ -14,7 +14,7 @@ public class Room {
     /*humans could be also heaters*/
     private final List<Heater> heaters;
 
-    Room(int temperatureInside, List<IrregularCuboid> irregularCuboids, List<List<Cuboid>> cuboidss, Cuboid floor, List<Heater> heaters){
+    Room(int temperatureInside, List<IrregularCuboid> wallsWithWindows, List<Cuboid> walls, Cuboid floor, List<Heater> heaters){
         this.temperatureInside = temperatureInside;
         this.wallsWithWindows = wallsWithWindows;
         this.walls = walls;
@@ -48,7 +48,6 @@ public class Room {
             temperatureInside += wallWithWindows.calculatHeatTransfer()/
                     (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR);
 
-            for(Cuboid cuboid : cuboids) {
             for(Cuboid window : wallWithWindows.getWindows()){
                 temperatureInside += window.calculatHeatTransfer()/
                         (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
