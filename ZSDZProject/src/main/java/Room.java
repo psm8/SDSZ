@@ -8,16 +8,16 @@ public class Room {
     /*specific gas constant  for dry air = 287.05 J/(kg*K)*/
     final double SPECIFIC_GAS_CONSTANT_OF_DRY_AIR = 287.05;
     double temperatureInside;
-    private final List<IrregularCuboid> irregularCuboids;
-    private final List<List<Cuboid>> cuboidss;
+    private final List<IrregularCuboid> wallsWithWindows;
+    private final List<Cuboid> walls;
     private final Cuboid floor;
     /*humans could be also heaters*/
     private final List<Heater> heaters;
 
     Room(int temperatureInside, List<IrregularCuboid> irregularCuboids, List<List<Cuboid>> cuboidss, Cuboid floor, List<Heater> heaters){
         this.temperatureInside = temperatureInside;
-        this.irregularCuboids = irregularCuboids;
-        this.cuboidss = cuboidss;
+        this.wallsWithWindows = wallsWithWindows;
+        this.walls = walls;
         this.floor = floor;
         this.heaters = heaters;
 
@@ -43,27 +43,35 @@ public class Room {
                     (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR);
         }
 
-        for(IrregularCuboid irregularCuboid : irregularCuboids) {
-            temperatureInside += irregularCuboid.calculatHeatTransfer()/
+        for(IrregularCuboid wallWithWindows : wallsWithWindows) {
+
+            temperatureInside += wallWithWindows.calculatHeatTransfer()/
                     (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR);
-        }
 
-
-        for(List<Cuboid> cuboids : cuboidss) {
             for(Cuboid cuboid : cuboids) {
-                temperatureInside += cuboid.calculatHeatTransfer() /
+            for(Cuboid window : wallWithWindows.getWindows()){
+                temperatureInside += window.calculatHeatTransfer()/
                         (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
             }
         }
 
-        for(IrregularCuboid irregularCuboid : irregularCuboids) {
-            irregularCuboid.setTemperatureInside(temperatureInside);
+
+        for(Cuboid wall : walls) {
+            temperatureInside += wall.calculatHeatTransfer() /
+                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
         }
 
-        for(List<Cuboid> cuboids : cuboidss) {
-            for (Cuboid cuboid : cuboids) {
-                cuboid.setTemperatureInside(temperatureInside);
+        for(IrregularCuboid wallWithWindows : wallsWithWindows) {
+
+            wallWithWindows.setTemperatureInside(temperatureInside);
+
+            for (Cuboid window : wallWithWindows.getWindows()) {
+                window.setTemperatureInside(temperatureInside);
             }
+        }
+
+        for (Cuboid wall : walls) {
+            wall.setTemperatureInside(temperatureInside);
         }
     }
 
@@ -71,7 +79,7 @@ public class Room {
         /*room is rectangle*/
         double base = floor.getHeight() * floor.getWidth();
         /*all windows have same height*/
-        double volume = base * irregularCuboids.get(0).getHeight();
+        double volume = base * wallsWithWindows.get(0).getHeight();
 
         double heatersVolume = 0;
         for(Heater heater : heaters){

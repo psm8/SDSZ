@@ -9,7 +9,7 @@ public class Main {
         List<Layer> layersWall1 = new ArrayList<>();
         layersWall1.add(new Layer(0.1, 0.02));
 
-        List<List<Cuboid>> windowss = new ArrayList<>();
+        List<Cuboid> walls = new ArrayList<>();
 
         List<Cuboid> windowsWall1 = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class Main {
         wallsWithWindows.add(new IrregularCuboid(20 , 0, layersWall1, 0.2 , 0.2 , 5, 5, windowsWall1));
         Cuboid floor = new Cuboid(20 , 0, layersWall1, 0.2 , 0.2 , 5, 5);
 
-        Room room = new Room(20, wallsWithWindows, windowss, floor, heaters);
+        Room room = new Room(20, wallsWithWindows, walls, floor, heaters);
 
         System.out.println("Start...");
 
