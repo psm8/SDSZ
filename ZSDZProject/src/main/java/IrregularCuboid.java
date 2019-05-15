@@ -4,10 +4,10 @@ import java.util.List;
 class IrregularCuboid extends Cuboid {
     private final List<Cuboid> windows;
 
-    IrregularCuboid(double temperatureInside, double temperatureOutside, List<Layer> layers, double insideConvercionCoeff,
-                    double outsideConvectionCoeff, double height, double width, List<Cuboid> windows){
+    IrregularCuboid(double temperatureInside, double temperatureOutside, List<Layer> layers, double windVelocity,
+                    double height, double width, List<Cuboid> windows){
 
-        super(temperatureInside, temperatureOutside, layers, insideConvercionCoeff, outsideConvectionCoeff, height, width);
+        super(temperatureInside, temperatureOutside, layers, windVelocity, height, width);
         this.windows = windows;
 
     }

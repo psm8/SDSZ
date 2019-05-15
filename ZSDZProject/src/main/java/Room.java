@@ -20,14 +20,16 @@ public class Room {
         this.walls = walls;
         this.floor = floor;
         this.heaters = heaters;
-
     }
 
     public double getTemperatureInside() {
         return temperatureInside;
     }
 
-    void calculateTemperature(){
+    void calculateTemperature(int currentTime, Temperature temperature){
+
+        double currentTemperatureOutside = temperature.getTemperature().get(
+                (int)(currentTime/temperature.getMeasurementsInterval()));
 
         /* dT = Q/(m * c)
            T - temperature change (K)
@@ -60,18 +62,31 @@ public class Room {
                     (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
         }
 
+            temperatureInside += floor.calculatHeatTransfer()/
+                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
+
+        for(Heater heater : heaters) {
+            heater.setSurroundingAirTemperature(temperatureInside);
+        }
+
         for(IrregularCuboid wallWithWindows : wallsWithWindows) {
 
             wallWithWindows.setTemperatureInside(temperatureInside);
+            wallWithWindows.setTemperatureOutside(currentTemperatureOutside);
 
             for (Cuboid window : wallWithWindows.getWindows()) {
                 window.setTemperatureInside(temperatureInside);
+                window.setTemperatureOutside(currentTemperatureOutside);
             }
         }
 
         for (Cuboid wall : walls) {
             wall.setTemperatureInside(temperatureInside);
+            wall.setTemperatureOutside(currentTemperatureOutside);
         }
+
+        floor.setTemperatureInside(temperatureInside);
+        floor.setTemperatureOutside(currentTemperatureOutside);
     }
 
     private double calculateVolume(){
