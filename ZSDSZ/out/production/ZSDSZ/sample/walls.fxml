@@ -47,7 +47,7 @@
 
 
                 <Button onAction="#setWall" styleClass="buttons" stylesheets="@pattern.css" text="SET" />
-                <Button onAction="#gotoHeater" styleClass="buttons" stylesheets="@pattern.css" text="NEXT" />
+                <Button onAction="#gotoFloor" styleClass="buttons" stylesheets="@pattern.css" text="NEXT" />
             </children>
         </VBox>
     </children>

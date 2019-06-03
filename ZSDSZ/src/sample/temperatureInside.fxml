@@ -14,7 +14,7 @@
                 <Label text="What is the temperature inside the room?" styleClass="labels" stylesheets="@pattern.css"/>
                 <TextField fx:id="temperatureInside" styleClass="fields" stylesheets="@pattern.css"/>
                 <Button onAction="#setTemperatureInside" text="SET" styleClass="buttons" stylesheets="@pattern.css"/>
-                <Button onAction="#gotoFloor" text="NEXT" styleClass="buttons" stylesheets="@pattern.css"/>
+                <Button onAction="#gotoWalls" text="NEXT" styleClass="buttons" stylesheets="@pattern.css"/>
             </children>
         </VBox>
     </children>

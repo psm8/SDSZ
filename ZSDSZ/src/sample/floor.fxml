@@ -23,7 +23,7 @@
                 </VBox>
                 </HBox>
                 <Button onAction="#setFloor" text="SET" styleClass="buttons" stylesheets="@pattern.css"/>
-                <Button onAction="#gotoWalls" text="NEXT" styleClass="buttons" stylesheets="@pattern.css"/>
+                <Button onAction="#gotoHeater" text="NEXT" styleClass="buttons" stylesheets="@pattern.css"/>
             </children>
         </VBox>
     </children>

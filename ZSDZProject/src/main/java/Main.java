@@ -35,7 +35,7 @@ public class Main {
         walls.add(new Cuboid(0 , 20, layersWall1, 0, 10, 10));
         FloorOnGround floor = new FloorOnGround(20 , 0, layersWall1, 0, 10, 10);
 
-        Room room = new Room(20, wallsWithWindows, walls, floor, heaters);
+        Room room = new Room(20, wallsWithWindows, walls, floor, heaters, 22);
 
         System.out.println("Start...");
 
@@ -47,9 +47,12 @@ public class Main {
         temperatures.add(2.5);
         temperatures.add(1.5);
 
-        Temperature temperature = new Temperature(temperatures, 14400);
+        Temperature temperature = new Temperature(temperatures, 10044000);
 
-        for (int i = 0; i < 86400; i++) {
+        for (int i = 0; i < temperature.getMeasurementsInterval() * temperature.getTemperature().size(); i++) {
+            if(i == 3000000) {
+                System.out.println("test");
+            }
             room.calculateTemperature(i, temperature);
             if(i%60 == 0) {
                 System.out.println(i + " " + room.getTemperatureInside());
