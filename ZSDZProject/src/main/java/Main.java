@@ -4,7 +4,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Heater> heaters = new ArrayList<>();
-        heaters.add(new Heater(8000, 1, 80, 60, 20, 1.33));
+        heaters.add(new Heater(10000, 0.1, 80, 60, 20, 1.33));
 
         List<Layer> layersWall1 = new ArrayList<>();
         /*brickwork*/
@@ -29,10 +29,10 @@ public class Main {
 
         List<IrregularCuboid> wallsWithWindows = new ArrayList<>();
         wallsWithWindows.add(new IrregularCuboid(20 , 0, layersWall1, 5, 3, 10, windowsWall1));
-        walls.add(new Cuboid(20 , 0, layersWall1, 1, 3, 10));
-        walls.add(new Cuboid(20 , 0, layersWall1, 1, 3, 10));
-        walls.add(new Cuboid(20 , 0, layersWall1, 1, 3, 10));
-        walls.add(new Cuboid(20 , 0, layersWall1, 0, 10, 10));
+        walls.add(new Cuboid(0 , 20, layersWall1, 1, 3, 10));
+        walls.add(new Cuboid(0 , 20, layersWall1, 1, 3, 10));
+        walls.add(new Cuboid(0 , 20, layersWall1, 1, 3, 10));
+        walls.add(new Cuboid(0 , 20, layersWall1, 0, 10, 10));
         FloorOnGround floor = new FloorOnGround(20 , 0, layersWall1, 0, 10, 10);
 
         Room room = new Room(20, wallsWithWindows, walls, floor, heaters);
@@ -40,7 +40,7 @@ public class Main {
         System.out.println("Start...");
 
         List<Double> temperatures = new ArrayList<>();
-        temperatures.add(0.);
+        temperatures.add(-5.);
         temperatures.add(-5.);
         temperatures.add(-3.3);
         temperatures.add(1.);

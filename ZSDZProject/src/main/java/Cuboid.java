@@ -24,6 +24,14 @@ public class Cuboid {
 
     }
 
+    public List<Layer> getLayers() {
+        return layers;
+    }
+
+    public double getTemperatureOutside() {
+        return temperatureOutside;
+    }
+
     public double getHeight() {
         return height;
     }

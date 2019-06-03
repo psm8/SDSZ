@@ -3,6 +3,8 @@ import java.util.List;
 public class Room {
     /*specific heat capacity of air ~= 1005 J/(kg * K); accuracy 0.2%*/
     final int SPECIFIC_HEAT_CAPACITY_OF_AIR = 1005;
+    final int SPECIFIC_HEAT_CAPACITY_OF_WALL = 880;
+    final int DENSITY_OF_WALL = 1920;
     /*air pressure  = 101325 Pa*/
     final int AIR_PRESSURE = 101325;
     /*specific gas constant  for dry air = 287.05 J/(kg*K)*/
@@ -42,28 +44,28 @@ public class Room {
 
         for(Heater heater : heaters) {
             temperatureInside += heater.getPower()/
-                    (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR);
+                    ((calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR) + calculateWallHeatLoss());
         }
 
         for(IrregularCuboid wallWithWindows : wallsWithWindows) {
 
             temperatureInside += wallWithWindows.calculatHeatTransfer()/
-                    (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR);
+                    (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR - calculateWallHeatLoss());
 
             for(Cuboid window : wallWithWindows.getWindows()){
                 temperatureInside += window.calculatHeatTransfer()/
-                        (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
+                        (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR - calculateWallHeatLoss());
             }
         }
 
 
         for(Cuboid wall : walls) {
             temperatureInside += wall.calculatHeatTransfer() /
-                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
+                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR - calculateWallHeatLoss());
         }
 
             temperatureInside += floor.calculatHeatTransfer()/
-                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR);
+                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR - calculateWallHeatLoss());
 
         for(Heater heater : heaters) {
             heater.setSurroundingAirTemperature(temperatureInside);
@@ -112,6 +114,59 @@ public class Room {
            T - temperature (K)*/
 
         return AIR_PRESSURE/(SPECIFIC_GAS_CONSTANT_OF_DRY_AIR * (temperatureInside + 273.15));
+    }
+
+    private double calculateWallHeatLoss(){
+
+        double overallHeatLoss = 0;
+
+        for(Cuboid wall : walls){
+            double thickness = 0;
+
+            for(Layer layer : wall.getLayers()){
+                thickness += layer.getThickness();
+            }
+
+            overallHeatLoss += thickness * wall.calculateSize() * DENSITY_OF_WALL *
+                    SPECIFIC_HEAT_CAPACITY_OF_WALL * ((temperatureInside - wall.getTemperatureOutside())/10);
+
+        }
+
+        for(IrregularCuboid wall : wallsWithWindows){
+            double thickness = 0;
+
+            for(Layer layer : wall.getLayers()){
+                thickness += layer.getThickness();
+            }
+
+            for(Cuboid window : wall.getWindows()){
+                double thickness1 = 0;
+
+                for(Layer layer : window.getLayers()){
+                    thickness1 += layer.getThickness();
+                }
+
+                overallHeatLoss += thickness1 * window.calculateSize() * DENSITY_OF_WALL *
+                        SPECIFIC_HEAT_CAPACITY_OF_WALL * ((temperatureInside - window.getTemperatureOutside())/10);
+            }
+
+
+
+            overallHeatLoss += thickness * wall.calculateSize() * DENSITY_OF_WALL *
+                    SPECIFIC_HEAT_CAPACITY_OF_WALL * ((temperatureInside - wall.getTemperatureOutside())/10);
+
+        }
+
+        double thickness = 0;
+
+        for(Layer layer : floor.getLayers()){
+            thickness += layer.getThickness();
+        }
+
+        overallHeatLoss += thickness * floor.calculateSize() * DENSITY_OF_WALL *
+                SPECIFIC_HEAT_CAPACITY_OF_WALL * (temperatureInside - (floor.getTemperatureOutside())/10);
+
+        return overallHeatLoss;
     }
 
 }
