@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="AP" prefHeight="600.0" prefWidth="800.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
+    <children>
+        <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+            <children>
+                <Label text="Parameters of a heater" styleClass="labels" stylesheets="@pattern.css" />
+                <TextField fx:id="heaterPower" promptText="power" styleClass="fields" stylesheets="@pattern.css" />
+                <TextField fx:id="heaterVolume" promptText="volume" styleClass="fields" stylesheets="@pattern.css" />
+                <TextField fx:id="heaterSurroundingAirTemperature" promptText="Surrounding Air Temperature" styleClass="fields" stylesheets="@pattern.css" />
+                <Button onAction="#setHeater" text="SET" styleClass="buttons" stylesheets="@pattern.css"/>
+                <Button onAction="#gotoSimulation" text="Simulate" styleClass="buttons" stylesheets="@pattern.css"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

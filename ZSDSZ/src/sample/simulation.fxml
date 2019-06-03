@@ -9,14 +9,14 @@
 
 <AnchorPane fx:id="AP" prefHeight="600.0" prefWidth="800.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
     <children>
-        <VBox prefHeight="600.0" prefWidth="800.0">
+        <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
             <children>
-            <LineChart>
+            <LineChart fx:id="lineChart">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis label="Time" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis label="Power" side="LEFT" />
               </yAxis>
             </LineChart>
                 <Button onAction="#gotoApplication" styleClass="buttons" stylesheets="@pattern.css" text="END" />

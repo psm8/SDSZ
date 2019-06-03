@@ -8,28 +8,47 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane  fx:controller="sample.applicationController" fx:id="AP" stylesheets="@pattern.css" styleClass="AP" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="AP" prefHeight="600.0" prefWidth="800.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
     <children>
-        <VBox prefHeight="600.0" prefWidth="800.0">
+        <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
             <children>
-                <Label text="what is the temperature outside the wall?" styleClass="labels" stylesheets="@pattern.css" />
-                <TextField fx:id="temperatureOutside" promptText="temperature outside"  styleClass="fields" stylesheets="@pattern.css"/>
-                <Label text="wall size" styleClass="labels" stylesheets="@pattern.css" />
-                <TextField fx:id="wallWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css"/>
-                <TextField fx:id="wallHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css"/>
-                <TextField fx:id="wallThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css"/>
-                <TextField fx:id="wallConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css"/>
-                <CheckBox fx:id="wallWindow" text="has a window?" styleClass="labels" stylesheets="@pattern.css"/>
-                <TextField fx:id="windowWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css"/>
-                <TextField fx:id="windowHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css"/>
-                <TextField fx:id="windowThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css"/>
-                <TextField fx:id="windowConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css"/>
-                <CheckBox fx:id="wallHeater" text="has a heater?" styleClass="labels" stylesheets="@pattern.css"/>
-                <TextField fx:id="heaterPower" promptText="power" styleClass="fields" stylesheets="@pattern.css"/>
-                <Button onAction="#setWall" text="SET" styleClass="buttons" stylesheets="@pattern.css" />
-                <Button onAction="#gotoWind" text="NEXT" styleClass="buttons" stylesheets="@pattern.css"/>
+                <Label styleClass="labels" stylesheets="@pattern.css" text="what is the temperature outside the wall?" />
+                <TextField fx:id="temperatureOutside" promptText="temperature outside" styleClass="fields" stylesheets="@pattern.css" />
+
+                <Label styleClass="labels" stylesheets="@pattern.css" text="wall size" />
+                <TextField fx:id="wallWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
+                <TextField fx:id="wallHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
+
+                <Label styleClass="labels" stylesheets="@pattern.css" text="layers" />
+                <HBox>
+                    <VBox>
+                        <TextField fx:id="wallThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="wallConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
+                    </VBox>
+                    <VBox>
+                        <TextField fx:id="wallThickness2" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="wallConductivity2" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
+                    </VBox>
+                    <VBox>
+                        <TextField fx:id="wallThickness3" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="wallConductivity3" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
+                    </VBox>
+                    <VBox>
+                        <TextField fx:id="wallThickness4" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="wallConductivity4" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
+                    </VBox>
+                </HBox>
+
+                <CheckBox fx:id="wallWindow" styleClass="labels" stylesheets="@pattern.css" text="has a window?" />
+                <TextField fx:id="windowWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
+                <TextField fx:id="windowHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
+                <TextField fx:id="windowThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
+                <TextField fx:id="windowConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
+
+
+                <Button onAction="#setWall" styleClass="buttons" stylesheets="@pattern.css" text="SET" />
+                <Button onAction="#gotoHeater" styleClass="buttons" stylesheets="@pattern.css" text="NEXT" />
             </children>
         </VBox>
     </children>
 </AnchorPane>
-

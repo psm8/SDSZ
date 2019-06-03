@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="AP" prefHeight="600.0" prefWidth="800.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
+    <children>
+        <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+            <children>
+                <Label styleClass="labels" stylesheets="@pattern.css" text="floor size" />
+                <TextField fx:id="floorWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
+                <TextField fx:id="floorHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
+
+                <Label styleClass="labels" stylesheets="@pattern.css" text="layers" />
+                <HBox>
+                <VBox>
+                    <TextField fx:id="floorThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
+                    <TextField fx:id="floorConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
+                </VBox>
+                <VBox>
+                    <TextField fx:id="floorThickness2" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
+                    <TextField fx:id="floorConductivity2" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
+                </VBox>
+                </HBox>
+                <Button onAction="#setFloor" text="SET" styleClass="buttons" stylesheets="@pattern.css"/>
+                <Button onAction="#gotoWalls" text="NEXT" styleClass="buttons" stylesheets="@pattern.css"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
+
