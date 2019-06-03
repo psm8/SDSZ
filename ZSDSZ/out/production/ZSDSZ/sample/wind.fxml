@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="AP" prefHeight="600.0" prefWidth="800.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
+    <children>
+        <VBox prefHeight="600.0" prefWidth="800.0">
+            <children>
+                <Label text="what is the velocity of the wind?" styleClass="labels" stylesheets="@pattern.css"/>
+                <TextField fx:id="windVelocity" promptText="velocity" styleClass="fields" stylesheets="@pattern.css"/>
+                <Button onAction="#setWind" text="SET" styleClass="buttons" stylesheets="@pattern.css"/>
+                <Button onAction="#gotoSimulation" text="SIMULATE" styleClass="buttons" stylesheets="@pattern.css"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

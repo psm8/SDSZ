@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane  fx:controller="sample.applicationController" fx:id="AP" stylesheets="@pattern.css" styleClass="AP" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox prefHeight="600.0" prefWidth="800.0">
+            <children>
+                <Label text="what is the temperature outside the wall?" styleClass="labels" stylesheets="@pattern.css" />
+                <TextField fx:id="temperatureOutside" promptText="temperature outside"  styleClass="fields" stylesheets="@pattern.css"/>
+                <Label text="wall size" styleClass="labels" stylesheets="@pattern.css" />
+                <TextField fx:id="wallWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css"/>
+                <TextField fx:id="wallHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css"/>
+                <TextField fx:id="wallThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css"/>
+                <TextField fx:id="wallConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css"/>
+                <CheckBox fx:id="wallWindow" text="has a window?" styleClass="labels" stylesheets="@pattern.css"/>
+                <TextField fx:id="windowWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css"/>
+                <TextField fx:id="windowHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css"/>
+                <TextField fx:id="windowThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css"/>
+                <TextField fx:id="windowConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css"/>
+                <CheckBox fx:id="wallHeater" text="has a heater?" styleClass="labels" stylesheets="@pattern.css"/>
+                <TextField fx:id="heaterPower" promptText="power" styleClass="fields" stylesheets="@pattern.css"/>
+                <Button onAction="#setWall" text="SET" styleClass="buttons" stylesheets="@pattern.css" />
+                <Button onAction="#gotoWind" text="NEXT" styleClass="buttons" stylesheets="@pattern.css"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
+
