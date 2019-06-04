@@ -22,7 +22,6 @@ public class applicationController {
     public TextField temperatureInside;
     public TextField heaterPower;
     public TextField heaterVolume;
-    public TextField heaterSurroundingAirTemperature;
     public TextField wallThickness1;
     public TextField wallConductivity1;
     public TextField wallThickness2;
@@ -76,14 +75,15 @@ public class applicationController {
     public TextField temperatureOutside4;
 
     public AnchorPane AP;
+    public TextField temperatureDesired;
 
 
     public void setDefault(ActionEvent event){
-        temperatureInside.setText("20.0");
+        temperatureInside.setText("8.0");
+        temperatureDesired.setText("22.0");
 
         heaterPower.setText("8000.0");
         heaterVolume.setText("2.0");
-        heaterSurroundingAirTemperature.setText("20.0");
 
         wallThickness1.setText("0.105");
         wallConductivity1.setText("0.77");
@@ -105,10 +105,10 @@ public class applicationController {
         windowThickness3.setText("0.005");
         windowConductivity3.setText("0.024");
 
-        temperatureOutside1.setText("0.0");
-        temperatureOutside2.setText("1.0");
-        temperatureOutside3.setText("1.0");
-        temperatureOutside4.setText("1.0");
+        temperatureOutside1.setText("-100.0");
+        temperatureOutside2.setText("8.0");
+        temperatureOutside3.setText("-100.0");
+        temperatureOutside4.setText("8.0");
 
         wallHeight1.setText("2.0");
         wallWidth1.setText("10.0");
@@ -133,8 +133,9 @@ public class applicationController {
     }
     
     public void simulate(ActionEvent event) {
+        /* TODO usunalem surroundingHeaterTemperature i zastapilem ja roboczo zerem, ustawic to na temperatureInside i zostawic? */
         List<Heater> heaters = new ArrayList<>();
-        heaters.add(new Heater(Double.parseDouble(heaterPower.getText()),Double.parseDouble(heaterVolume.getText()), 80, 60, Double.parseDouble(heaterSurroundingAirTemperature.getText()), 1.33));
+        heaters.add(new Heater(Double.parseDouble(heaterPower.getText()),Double.parseDouble(heaterVolume.getText()), 80, 60, 0.0, 1.33));
 
         List<Layer> layersWall1 = new ArrayList<>();
         /*brickwork*/
@@ -173,11 +174,16 @@ public class applicationController {
         walls.add(new Cuboid(Double.parseDouble(temperatureInside.getText()) , Double.parseDouble(temperatureOutside3.getText()), layersWall1, 1, Double.parseDouble(wallHeight3.getText()), Double.parseDouble(wallWidth3.getText())));
         walls.add(new Cuboid(Double.parseDouble(temperatureInside.getText()) , Double.parseDouble(temperatureOutside4.getText()), layersWall1, 0, Double.parseDouble(wallHeight4.getText()), Double.parseDouble(wallWidth4.getText())));
         FloorOnGround floor = new FloorOnGround(Double.parseDouble(temperatureInside.getText()) , Double.parseDouble(temperatureOutside1.getText()), layersWall1, 0, Double.parseDouble(floorHeight.getText()), Double.parseDouble(floorWidth.getText()));
-         Room room = new Room(Double.parseDouble(temperatureInside.getText()),wallsWithWindows,walls,floor,heaters, 22);//text
+         Room room = new Room(Double.parseDouble(temperatureInside.getText()),wallsWithWindows,walls,floor,heaters, Double.parseDouble(temperatureDesired.getText()));
 
         System.out.println("Start...");
 
         List<Double> temperatures = new ArrayList<>();
+        temperatures.add(Double.parseDouble(temperatureOutside1.getText()));
+        temperatures.add(Double.parseDouble(temperatureOutside2.getText()));
+        temperatures.add(Double.parseDouble(temperatureOutside3.getText()));
+        temperatures.add(Double.parseDouble(temperatureOutside4.getText()));
+        /*
         temperatures.add(-110.); //text
         temperatures.add(0.);//text
         temperatures.add(-113.3);//text
@@ -185,7 +191,7 @@ public class applicationController {
         temperatures.add(-112.5);//text
         temperatures.add(-111.5);//text
         temperatures.add(-0.5);//text
-
+        */
         sample.entities.Temperature temperature = new Temperature(temperatures, 86400);//text
 
         Stage primaryStage = (Stage) AP.getScene().getWindow();
@@ -212,7 +218,7 @@ public class applicationController {
             }
         }
 
-        Scene scene  = new Scene(lineChart,800,600);
+        Scene scene  = new Scene(lineChart,1000,800);
         lineChart.getData().add(series);
 
         primaryStage.setScene(scene);

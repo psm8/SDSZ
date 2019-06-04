@@ -11,18 +11,23 @@
 <AnchorPane fx:id="AP" prefHeight="800.0" prefWidth="1000.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
         <VBox AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
             <Label text="Room heating simulation." stylesheets="@pattern.css" styleClass="title" />
-
-            <VBox>
-                    <Label text="What is the temperature inside the room?" styleClass="labels" stylesheets="@pattern.css"/>
+            <HBox>
+                <VBox>
+                    <Label text="Starting temperature" styleClass="labels" stylesheets="@pattern.css"/>
                     <TextField fx:id="temperatureInside" promptText="temperature inside" styleClass="fields" stylesheets="@pattern.css"/>
-            </VBox>
-
+                </VBox>
+                <VBox>
+                    <Label text="Desired temperature" styleClass="labels" stylesheets="@pattern.css"/>
+                    <TextField fx:id="temperatureDesired" promptText="temperature desired" styleClass="fields" stylesheets="@pattern.css"/>
+                </VBox>
+            </HBox>
 
             <VBox>
                 <Label styleClass="labels" stylesheets="@pattern.css" text="floor and ceiling size" />
-                <TextField fx:id="floorWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
-                <TextField fx:id="floorHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
-
+                <HBox>
+                    <TextField fx:id="floorWidth" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
+                    <TextField fx:id="floorHeight" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
+                </HBox>
                 <Label styleClass="labels" stylesheets="@pattern.css" text="floor layers" />
                 <HBox>
                     <VBox>
@@ -43,7 +48,6 @@
                     </VBox>
                 </HBox>
 
-
                 <Label styleClass="labels" stylesheets="@pattern.css" text="walls sizes and parameters" />
                 <HBox>
                     <VBox>
@@ -54,9 +58,6 @@
                         <TextField fx:id="windowHeight1" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowThickness1" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowConductivity1" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
-                        <Label styleClass="labels" stylesheets="@pattern.css" text="temperature outside" />
-                        <TextField fx:id="temperatureOutside1" promptText="temperature outside" styleClass="fields" stylesheets="@pattern.css" />
-
                     </VBox>
                     <VBox>
                         <TextField fx:id="wallWidth2" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
@@ -66,9 +67,6 @@
                         <TextField fx:id="windowHeight2" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowThickness2" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowConductivity2" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
-                        <Label styleClass="labels" stylesheets="@pattern.css" text="temperature outside" />
-                        <TextField fx:id="temperatureOutside2" promptText="temperature outside" styleClass="fields" stylesheets="@pattern.css" />
-
                     </VBox>
                     <VBox>
                         <TextField fx:id="wallWidth3" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
@@ -78,9 +76,6 @@
                         <TextField fx:id="windowHeight3" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowThickness3" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowConductivity3" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
-                        <Label styleClass="labels" stylesheets="@pattern.css" text="temperature outside" />
-                        <TextField fx:id="temperatureOutside3" promptText="temperature outside" styleClass="fields" stylesheets="@pattern.css" />
-
                     </VBox>
                     <VBox>
                         <TextField fx:id="wallWidth4" promptText="width" styleClass="fields" stylesheets="@pattern.css" />
@@ -90,12 +85,8 @@
                         <TextField fx:id="windowHeight4" promptText="height" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowThickness4" promptText="thickness" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="windowConductivity4" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
-                        <Label styleClass="labels" stylesheets="@pattern.css" text="temperature outside" />
-                        <TextField fx:id="temperatureOutside4" promptText="temperature outside" styleClass="fields" stylesheets="@pattern.css" />
                     </VBox>
                 </HBox>
-
-
                 <Label styleClass="labels" stylesheets="@pattern.css" text="walls layers" />
                 <HBox>
                     <VBox>
@@ -115,6 +106,16 @@
                         <TextField fx:id="wallConductivity4" promptText="conductivity" styleClass="fields" stylesheets="@pattern.css" />
                     </VBox>
                 </HBox>
+
+                <VBox>
+                    <Label styleClass="labels" stylesheets="@pattern.css" text="Outside temperatures" />
+                    <HBox>
+                        <TextField fx:id="temperatureOutside1" promptText="after 0. hours" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside2" promptText="after 12. hours" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside3" promptText="after 24. hours" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside4" promptText="after 36. hours" styleClass="fields" stylesheets="@pattern.css" />
+                    </HBox>
+                </VBox>
                 <VBox>
                     <Label text="parameters of a heater" styleClass="labels" stylesheets="@pattern.css" />
                     <HBox>
@@ -123,6 +124,7 @@
                         <TextField fx:id="heaterSurroundingAirTemperature" promptText="air temperature" styleClass="fields" stylesheets="@pattern.css" />
                     </HBox>
                 </VBox>
+
                 <HBox>
                     <Button onAction="#setDefault" styleClass="buttons" stylesheets="@pattern.css" text="DEFAULT" />
                     <Button onAction="#simulate" styleClass="buttons" stylesheets="@pattern.css" text="START" />
