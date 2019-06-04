@@ -237,6 +237,10 @@ public class applicationController {
         lineChart2.setTranslateY(10);
         AP.getChildren().add(lineChart1);
         AP.getChildren().add(lineChart2);
+
+        exitButt.setTranslateX(10);
+        exitButt.setTranslateY(450);
+        AP.getChildren().add(exitButt);
         lineChart1.getData().add(series1);
         lineChart2.getData().add(series2);
     }
