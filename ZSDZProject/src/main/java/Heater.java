@@ -78,7 +78,7 @@ public class Heater {
                power -= 10;
            }
        } else{
-           if(power <= maxPower - 10){
+           if(power <= (maxPower - 10)){
                power += 10;
            }
        }

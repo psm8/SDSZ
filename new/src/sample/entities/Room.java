@@ -6,7 +6,7 @@ public class Room {
     /*specific heat capacity of air ~= 1005 J/(kg * K); accuracy 0.2%*/
     final int SPECIFIC_HEAT_CAPACITY_OF_AIR = 1005;
     final int SPECIFIC_HEAT_CAPACITY_OF_WALL = 880;
-    final int DENSITY_OF_WALL = 600;
+    final int DENSITY_OF_WALL = 1500;
     /*air pressure  = 101325 Pa*/
     final int AIR_PRESSURE = 101325;
     /*specific gas constant  for dry air = 287.05 J/(kg*K)*/
@@ -48,28 +48,28 @@ public class Room {
 
         for(Heater heater : heaters) {
             temperatureInside += heater.getPower()/
-                    ((calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR) + calculateWallHeatLoss());
+                    ((calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR) + calculateWallHeatCapacity());
         }
 
         for(IrregularCuboid wallWithWindows : wallsWithWindows) {
 
             temperatureInside += wallWithWindows.calculatHeatTransfer()/
-                    (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatLoss());
+                    (calculateVolume() * airDensity  * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatCapacity());
 
             for(Cuboid window : wallWithWindows.getWindows()){
                 temperatureInside += window.calculatHeatTransfer()/
-                        (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatLoss());
+                        (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatCapacity());
             }
         }
 
 
         for(Cuboid wall : walls) {
             temperatureInside += wall.calculatHeatTransfer() /
-                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatLoss());
+                    (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatCapacity());
         }
 
         temperatureInside += floor.calculatHeatTransfer()/
-                (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatLoss());
+                (calculateVolume() * airDensity * SPECIFIC_HEAT_CAPACITY_OF_AIR + calculateWallHeatCapacity());
 
         for(Heater heater : heaters) {
             heater.setSurroundingAirTemperature(temperatureInside);
@@ -124,7 +124,7 @@ public class Room {
         return AIR_PRESSURE/(SPECIFIC_GAS_CONSTANT_OF_DRY_AIR * (temperatureInside + 273.15));
     }
 
-    private double calculateWallHeatLoss(){
+    private double calculateWallHeatCapacity(){
 
         double overallHeatLoss = 0;
 
@@ -136,7 +136,7 @@ public class Room {
             }
 
             overallHeatLoss += thickness * wall.calculateSize() * DENSITY_OF_WALL *
-                    SPECIFIC_HEAT_CAPACITY_OF_WALL * ((temperatureInside - wall.getTemperatureOutside())/2);
+                    SPECIFIC_HEAT_CAPACITY_OF_WALL;
 
         }
 
@@ -148,7 +148,7 @@ public class Room {
             }
 
             overallHeatLoss += thickness * wall.calculateSize() * DENSITY_OF_WALL *
-                    SPECIFIC_HEAT_CAPACITY_OF_WALL * ((temperatureInside - wall.getTemperatureOutside())/2);
+                    SPECIFIC_HEAT_CAPACITY_OF_WALL;
 
         }
 
@@ -159,7 +159,7 @@ public class Room {
         }
 
         overallHeatLoss += thickness * floor.calculateSize() * DENSITY_OF_WALL *
-                SPECIFIC_HEAT_CAPACITY_OF_WALL * (temperatureInside - (floor.getTemperatureOutside())/2);
+                SPECIFIC_HEAT_CAPACITY_OF_WALL;
 
         return overallHeatLoss;
     }

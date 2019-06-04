@@ -40,12 +40,11 @@ public class Main {
         System.out.println("Start...");
 
         List<Double> temperatures = new ArrayList<>();
-        temperatures.add(-5.);
-        temperatures.add(-5.);
-        temperatures.add(-3.3);
-        temperatures.add(1.);
-        temperatures.add(2.5);
-        temperatures.add(1.5);
+        temperatures.add(800.);
+        temperatures.add(-100.);
+        temperatures.add(-800.);
+        temperatures.add(100.);
+
 
         Temperature temperature = new Temperature(temperatures, 10044000);
 

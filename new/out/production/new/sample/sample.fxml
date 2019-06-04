@@ -121,7 +121,6 @@
                     <HBox>
                         <TextField fx:id="heaterPower" promptText="power" styleClass="fields" stylesheets="@pattern.css" />
                         <TextField fx:id="heaterVolume" promptText="volume" styleClass="fields" stylesheets="@pattern.css" />
-                        <TextField fx:id="heaterSurroundingAirTemperature" promptText="air temperature" styleClass="fields" stylesheets="@pattern.css" />
                     </HBox>
                 </VBox>
 
