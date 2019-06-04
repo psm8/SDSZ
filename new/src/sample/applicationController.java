@@ -190,15 +190,7 @@ public class applicationController {
         temperatures.add(Double.parseDouble(temperatureOutside4.getText()));
         temperatures.add(Double.parseDouble(temperatureOutside5.getText()));
         temperatures.add(Double.parseDouble(temperatureOutside6.getText()));
-        /*
-        temperatures.add(-110.); //text
-        temperatures.add(0.);//text
-        temperatures.add(-113.3);//text
-        temperatures.add(0.);//text
-        temperatures.add(-112.5);//text
-        temperatures.add(-111.5);//text
-        temperatures.add(-0.5);//text
-        */
+
         sample.entities.Temperature temperature = new Temperature(temperatures, Integer.parseInt(measurmentsInterval.getText())*3600);
 
         AP.getChildren().clear();
