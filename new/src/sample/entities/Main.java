@@ -6,7 +6,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Heater> heaters = new ArrayList<>();
-        heaters.add(new Heater(8000, 1, 80, 60, 20, 1.33));
+        heaters.add(new Heater(12000, 1, 80, 60, 20, 1.33));
 
         List<Layer> layersWall1 = new ArrayList<>();
         /*brickwork*/

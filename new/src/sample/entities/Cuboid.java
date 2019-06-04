@@ -15,7 +15,7 @@ public class Cuboid {
     double overallHeatTransferCoeffInversed;
 
     public Cuboid(double temperatureInside, double temperatureOutside, List<Layer> layers,
-                  double windVelocity, double height, double width){
+           double windVelocity, double height, double width){
 
         this.temperatureInside = temperatureInside;
         this.temperatureOutside = temperatureOutside;
@@ -24,6 +24,14 @@ public class Cuboid {
         this.height = height;
         this.width = width;
 
+    }
+
+    public List<Layer> getLayers() {
+        return layers;
+    }
+
+    public double getTemperatureOutside() {
+        return temperatureOutside;
     }
 
     public double getHeight() {

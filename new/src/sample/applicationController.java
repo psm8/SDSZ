@@ -82,7 +82,7 @@ public class applicationController {
         temperatureInside.setText("20.0");
 
         heaterPower.setText("8000.0");
-        heaterVolume.setText("1.0");
+        heaterVolume.setText("2.0");
         heaterSurroundingAirTemperature.setText("20.0");
 
         wallThickness1.setText("0.105");
@@ -173,19 +173,20 @@ public class applicationController {
         walls.add(new Cuboid(Double.parseDouble(temperatureInside.getText()) , Double.parseDouble(temperatureOutside3.getText()), layersWall1, 1, Double.parseDouble(wallHeight3.getText()), Double.parseDouble(wallWidth3.getText())));
         walls.add(new Cuboid(Double.parseDouble(temperatureInside.getText()) , Double.parseDouble(temperatureOutside4.getText()), layersWall1, 0, Double.parseDouble(wallHeight4.getText()), Double.parseDouble(wallWidth4.getText())));
         FloorOnGround floor = new FloorOnGround(Double.parseDouble(temperatureInside.getText()) , Double.parseDouble(temperatureOutside1.getText()), layersWall1, 0, Double.parseDouble(floorHeight.getText()), Double.parseDouble(floorWidth.getText()));
-         Room room = new Room(Double.parseDouble(temperatureInside.getText()),wallsWithWindows,walls,floor,heaters);
+         Room room = new Room(Double.parseDouble(temperatureInside.getText()),wallsWithWindows,walls,floor,heaters, 22);//text
 
         System.out.println("Start...");
 
         List<Double> temperatures = new ArrayList<>();
-        temperatures.add(0.);
-        temperatures.add(-5.);
-        temperatures.add(-3.3);
-        temperatures.add(1.);
-        temperatures.add(2.5);
-        temperatures.add(1.5);
+        temperatures.add(-110.); //text
+        temperatures.add(0.);//text
+        temperatures.add(-113.3);//text
+        temperatures.add(0.);//text
+        temperatures.add(-112.5);//text
+        temperatures.add(-111.5);//text
+        temperatures.add(-0.5);//text
 
-        sample.entities.Temperature temperature = new Temperature(temperatures, 14400);
+        sample.entities.Temperature temperature = new Temperature(temperatures, 86400);//text
 
         Stage primaryStage = (Stage) AP.getScene().getWindow();
 
@@ -203,7 +204,7 @@ public class applicationController {
         XYChart.Series series = new XYChart.Series();
         series.setName("Temperature inside the room");
 
-        for (int i = 0; i < 86400; i++) {
+        for (int i = 0; i < temperature.getMeasurementsInterval() * temperature.getTemperature().size(); i++) {
             room.calculateTemperature(i, temperature);
             if (i % 60 == 0) {
                 System.out.println(i + " " + room.getTemperatureInside());

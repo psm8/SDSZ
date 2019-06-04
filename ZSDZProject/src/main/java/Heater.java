@@ -1,4 +1,4 @@
-class Heater {
+public class Heater {
     private final double nominalPower;
     private final double maxPower;
     private final double volume;
