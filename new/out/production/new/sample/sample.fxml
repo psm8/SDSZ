@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.CheckBox?>
-<AnchorPane fx:id="AP" prefHeight="800.0" prefWidth="1000.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
+<AnchorPane fx:id="AP" prefHeight="600.0" prefWidth="1200.0" styleClass="AP" stylesheets="@pattern.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.applicationController">
         <VBox AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
             <Label text="Room heating simulation." stylesheets="@pattern.css" styleClass="title" />
             <HBox>
@@ -109,11 +109,14 @@
 
                 <VBox>
                     <Label styleClass="labels" stylesheets="@pattern.css" text="Outside temperatures" />
+                    <TextField fx:id="measurmentsInterval" promptText="measurment intervals" styleClass="fields" stylesheets="@pattern.css" />
                     <HBox>
-                        <TextField fx:id="temperatureOutside1" promptText="after 0. hours" styleClass="fields" stylesheets="@pattern.css" />
-                        <TextField fx:id="temperatureOutside2" promptText="after 12. hours" styleClass="fields" stylesheets="@pattern.css" />
-                        <TextField fx:id="temperatureOutside3" promptText="after 24. hours" styleClass="fields" stylesheets="@pattern.css" />
-                        <TextField fx:id="temperatureOutside4" promptText="after 36. hours" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside1" promptText="1st interval" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside2" promptText="2nd interval" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside3" promptText="3rd interval" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside4" promptText="4th interval" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside5" promptText="5th interval" styleClass="fields" stylesheets="@pattern.css" />
+                        <TextField fx:id="temperatureOutside6" promptText="6th interval" styleClass="fields" stylesheets="@pattern.css" />
                     </HBox>
                 </VBox>
                 <VBox>

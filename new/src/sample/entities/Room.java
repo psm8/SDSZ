@@ -32,6 +32,10 @@ public class Room {
         return temperatureInside;
     }
 
+    public void setTemperatureInside(double temperatureInside){
+        this.temperatureInside = temperatureInside;
+    }
+
     public void calculateTemperature(int currentTime, Temperature temperature){
 
         double currentTemperatureOutside = temperature.getTemperature().get(

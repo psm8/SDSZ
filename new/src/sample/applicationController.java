@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -76,6 +75,9 @@ public class applicationController {
 
     public AnchorPane AP;
     public TextField temperatureDesired;
+    public TextField temperatureOutside5;
+    public TextField temperatureOutside6;
+    public TextField measurmentsInterval;
 
 
     public void setDefault(ActionEvent event){
@@ -105,10 +107,14 @@ public class applicationController {
         windowThickness3.setText("0.005");
         windowConductivity3.setText("0.024");
 
+        measurmentsInterval.setText("6");
+
         temperatureOutside1.setText("-100.0");
-        temperatureOutside2.setText("8.0");
+        temperatureOutside2.setText("40.0");
         temperatureOutside3.setText("-100.0");
-        temperatureOutside4.setText("8.0");
+        temperatureOutside4.setText("40.0");
+        temperatureOutside5.setText("-100.0");
+        temperatureOutside6.setText("40.0");
 
         wallHeight1.setText("2.0");
         wallWidth1.setText("10.0");
@@ -133,9 +139,8 @@ public class applicationController {
     }
     
     public void simulate(ActionEvent event) {
-        /* TODO usunalem surroundingHeaterTemperature i zastapilem ja roboczo zerem, ustawic to na temperatureInside i zostawic? */
-        List<Heater> heaters = new ArrayList<>();
-        heaters.add(new Heater(Double.parseDouble(heaterPower.getText()),Double.parseDouble(heaterVolume.getText()), 80, 60, 0.0, 1.33));
+         List<Heater> heaters = new ArrayList<>();
+        heaters.add(new Heater(Double.parseDouble(heaterPower.getText()),Double.parseDouble(heaterVolume.getText()), 80, 60, Double.parseDouble(temperatureInside.getText()), 1.33));
 
         List<Layer> layersWall1 = new ArrayList<>();
         /*brickwork*/
@@ -183,6 +188,8 @@ public class applicationController {
         temperatures.add(Double.parseDouble(temperatureOutside2.getText()));
         temperatures.add(Double.parseDouble(temperatureOutside3.getText()));
         temperatures.add(Double.parseDouble(temperatureOutside4.getText()));
+        temperatures.add(Double.parseDouble(temperatureOutside5.getText()));
+        temperatures.add(Double.parseDouble(temperatureOutside6.getText()));
         /*
         temperatures.add(-110.); //text
         temperatures.add(0.);//text
@@ -192,37 +199,54 @@ public class applicationController {
         temperatures.add(-111.5);//text
         temperatures.add(-0.5);//text
         */
-        sample.entities.Temperature temperature = new Temperature(temperatures, 86400);//text
+        sample.entities.Temperature temperature = new Temperature(temperatures, Integer.parseInt(measurmentsInterval.getText())*3600);
 
-        Stage primaryStage = (Stage) AP.getScene().getWindow();
+        AP.getChildren().clear();
 
         //defining the axes
-        final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Time");
-        yAxis.setLabel("Temperature");
+        final NumberAxis xAxis1 = new NumberAxis();
+        final NumberAxis yAxis1 = new NumberAxis();
+        xAxis1.setLabel("Time");
+        yAxis1.setLabel("Temperature");
         //creating the chart
-        final LineChart<Number,Number> lineChart =
-                new LineChart<Number,Number>(xAxis,yAxis);
+        final LineChart<Number,Number> lineChart1 =
+                new LineChart<Number,Number>(xAxis1,yAxis1);
 
-        lineChart.setTitle("Room heating.");
-        //defining a series
-        XYChart.Series series = new XYChart.Series();
-        series.setName("Temperature inside the room");
+        lineChart1.setTitle("Room heating.");
+        //defining a series1
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Temperature inside the room");
+
+        final NumberAxis xAxis2 = new NumberAxis();
+        final NumberAxis yAxis2 = new NumberAxis();
+        xAxis2.setLabel("Time");
+        yAxis2.setLabel("Power");
+        //creating the chart
+        final LineChart<Number,Number> lineChart2 =
+                new LineChart<Number,Number>(xAxis2,yAxis2);
+
+        lineChart2.setTitle("Heater power.");
+        //defining a series2
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("Change in power of a heater");
 
         for (int i = 0; i < temperature.getMeasurementsInterval() * temperature.getTemperature().size(); i++) {
             room.calculateTemperature(i, temperature);
             if (i % 60 == 0) {
-                System.out.println(i + " " + room.getTemperatureInside());
-                series.getData().add(new XYChart.Data(i, room.getTemperatureInside()));
+                System.out.println(i + " " + room.getTemperatureInside() + " " + heaters.get(0).getPower());
+
+                series1.getData().add(new XYChart.Data(i, room.getTemperatureInside()));
+                series2.getData().add(new XYChart.Data(i, heaters.get(0).getPower()));
             }
         }
-
-        Scene scene  = new Scene(lineChart,1000,800);
-        lineChart.getData().add(series);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        lineChart1.setTranslateX(10);
+        lineChart1.setTranslateY(10);
+        lineChart2.setTranslateX(610);
+        lineChart2.setTranslateY(10);
+        AP.getChildren().add(lineChart1);
+        AP.getChildren().add(lineChart2);
+        lineChart1.getData().add(series1);
+        lineChart2.getData().add(series2);
     }
 
     public void exit(ActionEvent event) {
