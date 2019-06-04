@@ -2,7 +2,7 @@ package sample.entities;
 
 public class Heater {
     private final double nominalPower;
-    private final double maxPower;
+    private double maxPower;
     private final double volume;
     /*nominal when inlet water temperature ti = 80oC, outlet water temperature out tr = 60oC and surrounding air temperature ta = 20oC*/
     private final double waterTemperatureInlet;
@@ -74,6 +74,7 @@ public class Heater {
     }
 
     void smartSetPower(double targetTemperature){
+        maxPower =  calculatemaxPower();
 
         if(targetTemperature < surroundingAirTemperature){
             if(power >= 10) {
@@ -83,6 +84,10 @@ public class Heater {
             if(power <= maxPower - 10){
                 power += 10;
             }
+        }
+
+        if(power > maxPower){
+            power = maxPower;
         }
     }
 }
